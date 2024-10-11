@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"></style>
+    <link rel="icon" href="favicon.ico">
+    <title>Gra Dzik</title>
+</head>
+<body>
+    <h1>Gra Dzik</h1>
+    <div id="toolbar"><button id="rules" onclick="rulesMessage()">Zasady gry</button></div>
+    <h3>Wybierz poziom trudności:</h3>
+    <div id="toolbar">
+        <button id="easy" class="choice" onclick="setDifficulty('easy')">Łatwy</button>
+        <button id="mid" class="choice" onclick="setDifficulty('mid')">Średni</button>
+        <button id="hard" class="choice" onclick="setDifficulty('hard')">Trudny</button>
+    </div>
+    <div id="toolbar">
+        <button id="start" onclick="startGame()">Start!</button>
+    </div>
+    <br>
+    <div>
+        <h3 id="message"></h3>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
