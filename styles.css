@@ -1,9 +1,19 @@
 body {
     font-family: sans-serif;
+    background-color: #b5c7eb;
 }
 
-h1, h3 {
+h1, h2 ,h3, p {
     text-align: center;
+}
+
+span {
+    font-weight: bold;
+}
+
+div#container{
+    display: flex;
+    width: 100%;
 }
 
 div#toolbar{
@@ -12,45 +22,76 @@ div#toolbar{
     justify-items: center;
 }
 
-button.choice{
-    font-family: inherit;
-    font-size: 1em;
-    height: 3rem;
-    width: 6rem;
-    margin: 2rem;
+div#head{
+    display: inline;
+    justify-content: center;
+    justify-items: center;
 }
 
-button#easy{
-    background-color: green;
-    border-color: green;
-    border-radius: 1rem;
+div.center{
+    width: 50%;
+    display: inline;
+    justify-content: center;
+    justify-items: center;
 }
 
-button#mid{
-    background-color: yellow;
-    border-color: yellow;
-    border-radius: 1rem;
+.input{
+    margin: auto;
+    display: table;
 }
 
-button#hard{
-    background-color: red;
-    border-color: red;
-    border-radius: 1rem;
+div#left{
+    width: 25%;
+}
+
+div#right{
+    width: 25%;
 }
 
 button#rules{
-    background-color: lightgray;
-    border-color: lightgray;
+    height: 2rem;
+    width: 6rem;
+    border-color: #94a3c0;
     font-size: 1em;
     border-radius: 0.5rem;
+    margin: auto;
+    display: table;
 }
 
 button#start{
+    visibility: visible;
     height: 5rem;
     width: 6rem;
-    visibility: hidden;
-    background-color: lightgray;
-    border-color: lightgray;
+    border-color: #94a3c0;
     font-size: 1em;
     border-radius: 0.5rem;
+    margin: auto;
+    display: table;
+}
+
+button#dzik {
+    padding: 0;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    margin: auto;
+    display: table;
+    margin-top: 5rem;
+}
+
+#dzik img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0.5rem;
+}
+
+#dzik:active {
+    transform: scale(0.95);
+}
+
+.dzik {
+    visibility: hidden;
 }

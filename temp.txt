@@ -1,0 +1,48 @@
+let click = false;
+function buttonDzikReset(){
+    click = false;
+}
+//Increment the counter in a given time interval
+function updateNumber(){
+    numberOutput.innerHTML = ++numberOutputValue;
+    let inputValidation = validateInput();
+    if (inputValidation && (click == false)){
+        resultOutput.innerHTML = "Nie odpowiedziałeś na czas!"
+    }
+    stopGame();
+}
+
+function validateInput(){
+    if (((numberOutputValue.toString().indexOf(digit.value) > -1)) || numberOutputValue % parseInt(digit.value) === 0){
+        return true;
+    }
+}
+
+let numberInterval;
+function startGame(){
+    document.querySelector("#start").style.visibility = "hidden"
+    let dzikElements = document.querySelectorAll(".dzik");
+    for (i = 0; i < dzikElements.length; i++){
+        dzikElements[i].style.visibility = "visible";
+    }
+    numberInterval = setInterval(updateNumber, (parseInt(delay.value)*1000));
+}
+
+function stopGame(){
+    clearInterval(numberInterval);
+}
+
+function buttonDzikClick(){
+    click = true;
+    let inputValidation = validateInput();
+    if (inputValidation && (click == true)){
+        resultOutput.innerHTML = "Poprawna odpowiedź"
+        buttonDzikReset();
+    } else {
+        resultOutput.innerHTML = "Błędna odpowiedź"
+        stopGame();
+    }
+}
+
+
+let buttonDzik = document.querySelector("#dzik");
