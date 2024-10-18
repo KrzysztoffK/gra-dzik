@@ -16,6 +16,7 @@
     <div id="container">
         <div id="left">
             <h3>Twój średni czas reakcji:</h3>
+            <ul id="reactionTimeOutputList"></ul>
         </div>
         <div class="center">
             <h3>Wybierz opóźnienie:</h3>
@@ -25,7 +26,6 @@
             <input class="input" id="digit" type="range" min="2" max="9" value="7">
             <p><span id="digitValue"></span></p>
             <button id="start" onclick="startGame()">Start!</button>
-            <br>
             <h2 class="dzik">Liczba:</h3>
             <h3 class="dzik" id="counter"></h3>
             <h3 class="dzik" id="result"></h3>
@@ -33,6 +33,7 @@
         </div>
         <div id="right">
             <h3>Twoje wyniki:</h3>
+            <ul id="pointsOutputList"></ul>
         </div>
     </div>
     <script src="script.js"></script>

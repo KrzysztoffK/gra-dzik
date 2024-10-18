@@ -28,9 +28,15 @@ let resultOutput = document.querySelector("#result");
 let counter = 1;
 numberOutput.innerHTML = counter;
 let clickedInTime = false;
+let pointsCounter = 0;
+
+let reactionTimes = [];
+let counterUpdateTime = 0;
+let totalTime = 0;
 
 function updateCounter(){
     numberOutput.innerHTML = ++counter;
+    counterUpdateTime = Date.now();
     clickedInTime = false;
     setTimeout(function(){
         if (validateInput() && !clickedInTime){
@@ -41,9 +47,26 @@ function updateCounter(){
     }, (parseInt(delay.value) * 1000 - 50));
 }
 
+function updatePointsOutputList(){
+    let pointsOutputList = document.querySelector("#pointsOutputList");
+    let listElement = document.createElement('li');
+    let date = new Date;
+    let minutes = date.getMinutes();
+    if (minutes < 10){
+        minutes = '0' + minutes;
+    } 
+    listElement.textContent = `${date.getHours()}:${minutes}: ${pointsCounter} pkt`;
+    pointsOutputList.appendChild(listElement);
+}
+
 function buttonClick(){
+    let clickTime = Date.now();
+    let reactionTime =  clickTime - counterUpdateTime;
+    reactionTimes.push(reactionTime);
+    updateReactionTime();
     if(validateInput()){
         resultOutput.innerHTML = "Prawidłowa odpowiedź!";
+        pointsCounter++;
         clickedInTime = true;
     } else {
         resultOutput.innerHTML = "Błędna odpowiedź!";
@@ -52,8 +75,29 @@ function buttonClick(){
     }
 }
 
+function updateReactionTime(){
+    totalTime = 0;
+    for (let i = 0; i < reactionTimes.length; i++){
+        totalTime += reactionTimes[i];
+    }
+}
+
+function calculateAverageReactionTime(){
+    let averageTime = totalTime / reactionTimes.length;
+    averageTime = Math.ceil(averageTime);
+    let reactionTimeOutputList = document.querySelector("#reactionTimeOutputList");
+    let listElement = document.createElement('li');
+    listElement.textContent = `${averageTime} ms`;
+    reactionTimeOutputList.appendChild(listElement);
+}
+
 let numberInterval;
 function startGame(){
+    pointsCounter = 0;
+    counter = 1;
+    numberOutput.innerHTML = counter;
+    resultOutput.innerHTML = "&nbsp;";
+    clearInterval(numberInterval);
     document.querySelector("#start").style.visibility = "hidden"
     let dzikElements = document.querySelectorAll(".dzik");
     for (i = 0; i < dzikElements.length; i++){
@@ -63,7 +107,11 @@ function startGame(){
 }
 
 function stopGame(){
+    document.querySelector("#start").style.visibility = "visible";
+    document.querySelector("#start").innerHTML = "Od nowa?";
     clearInterval(numberInterval);
+    updatePointsOutputList();
+    calculateAverageReactionTime();
 }
 
 function validateInput(){
@@ -71,3 +119,5 @@ function validateInput(){
         return true;
     }
 }
+
+
